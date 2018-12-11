@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baosight.dao.OrderTzVOMapper" >
+    <resultMap id="BaseResultMap" type="com.baosight.VO.OrderTzVO" >
+        <result property="name" column="name"/>
+        <result property="orderTotal" column="total"/>
+        <result property="shoppCartNum" column="num"/>
+    </resultMap>
+
+    <select id="OrderTongZhi" resultMap="BaseResultMap">
+        select f.name,s.num,o.total
+        from food f,orderline o,shoppingcart s
+        where f.id = o.foodId and s.foodId = f.id
+    </select>
+
+    <delete id="OrderTZDelete" parameterType="string">
+        delete from orderline where foodId=(select id from food where name=#{name})
+    </delete>
+</mapper>

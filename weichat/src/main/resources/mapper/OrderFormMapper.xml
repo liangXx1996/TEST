@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baosight.dao.OrderFormMapper" >
+    <resultMap id="BaseResultMap" type="com.baosight.VO.OrderFormVO" >
+        <result property="foodName" column="name"/>
+        <result property="foodId" column="foodId"/>
+        <result property="ShopCarFoodId" column="foodId"/>
+        <result property="foodNum" column="num"/>
+        <result property="foodPrice" column="price"/>
+        <result property="foodStatues" column="stock"/>
+        <result property="orderTotal" column="total"/>
+    </resultMap>
+
+    <select id="OneOrder" resultMap="BaseResultMap">
+        SELECT o.foodId,f.name,f.price,f.stock,s.num,o.total
+        FROM food f,orderline o,shoppingcart s
+        where f.id = o.foodId and s.foodId = f.id
+    </select>
+
+    <select id="AllOrder" resultMap="BaseResultMap">
+        SELECT o.foodId,f.name,f.picture,f.price,f.stock,o.num,o.total,s.foodId
+        FROM food f,orderline o,shoppingcart s
+        where f.id = o.foodId and s.foodId = f.id
+    </select>
+</mapper>
