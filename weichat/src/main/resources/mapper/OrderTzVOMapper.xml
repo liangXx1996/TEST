@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.baosight.dao.OrderTzVOMapper" >
-    <resultMap id="BaseResultMap" type="com.baosight.VO.OrderTzVO" >
+<mapper namespace="com.baoxin.dao.OrderTzVOMapper" >
+    <resultMap id="BaseResultMap" type="com.baoxin.VO.OrderTzVO" >
         <result property="name" column="name"/>
         <result property="orderTotal" column="total"/>
         <result property="shoppCartNum" column="num"/>
+        <result property="foodId" column="foodId"/>
     </resultMap>
 
     <select id="OrderTongZhi" resultMap="BaseResultMap">
@@ -16,4 +17,25 @@
     <delete id="OrderTZDelete" parameterType="string">
         delete from orderline where foodId=(select id from food where name=#{name})
     </delete>
+
+    <insert id="insertFoodName" parameterType="com.baoxin.VO.OrderTzVO">
+        <!--<selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >-->
+        <!--SELECT LAST_INSERT_ID()-->
+        <!--</selectKey>-->
+        insert into food(name) values (#{name,jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="insertShoppCarNum" parameterType="com.baoxin.VO.OrderTzVO">
+        <!--<selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >-->
+            <!--SELECT LAST_INSERT_ID()-->
+        <!--</selectKey>-->
+        insert into shoppingcart(foodId,num) values(#{foodId,jdbcType=INTEGER},#{shoppCartNum,jdbcType=INTEGER})
+    </insert>
+
+    <insert id="insertOrderTotal" parameterType="com.baoxin.VO.OrderTzVO">
+        <!--<selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >-->
+            <!--SELECT LAST_INSERT_ID()-->
+        <!--</selectKey>-->
+        insert into orderline(foodId,total) values (#{foodId,jdbcType=INTEGER},#{orderTotal,jdbcType=DECIMAL})
+    </insert>
 </mapper>

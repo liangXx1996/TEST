@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.baosight.dao.OrderLineMapper" >
-  <resultMap id="BaseResultMap" type="com.baosight.pojo.OrderLine" >
+<mapper namespace="com.baoxin.dao.OrderLineMapper" >
+  <resultMap id="BaseResultMap" type="com.baoxin.pojo.OrderLine" >
     <constructor >
       <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="orderId" jdbcType="VARCHAR" javaType="java.lang.String" />
@@ -13,7 +13,7 @@
       <arg column="creatTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
       <arg column="updateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
     </constructor>
-    <collection property="foods" column="foodId" select="com.baosight.dao.FoodMapper.selectByPrimaryKey">
+    <collection property="foods" column="foodId" select="com.baoxin.dao.FoodMapper.selectByPrimaryKey">
     </collection>
 
   </resultMap>
@@ -30,7 +30,7 @@
     delete  from orderline
     where orderId = #{orderId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.baosight.pojo.OrderLine" >
+  <insert id="insert" parameterType="com.baoxin.pojo.OrderLine" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
     SELECT LAST_INSERT_ID()
   </selectKey>
@@ -41,7 +41,7 @@
       #{num,jdbcType=INTEGER}, #{total,jdbcType=DECIMAL}, #{status,jdbcType=INTEGER}, 
       now(), #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.baosight.pojo.OrderLine" >
+  <insert id="insertSelective" parameterType="com.baoxin.pojo.OrderLine" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -99,7 +99,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.baosight.pojo.OrderLine" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.baoxin.pojo.OrderLine" >
     update orderline
     <set >
       <if test="orderId != null" >
@@ -129,7 +129,7 @@
     </set>
     where orderId = #{orderId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.baosight.pojo.OrderLine" >
+  <update id="updateByPrimaryKey" parameterType="com.baoxin.pojo.OrderLine" >
     update orderline
     set orderId = #{orderId,jdbcType=VARCHAR},
       userId = #{userId,jdbcType=INTEGER},
@@ -159,7 +159,7 @@
     where orderId = #{orderId,jdbcType=VARCHAR}
   </select>
 
-  <insert id="insertOrderTotal" parameterType="com.baosight.pojo.OrderLine">
+  <insert id="insertOrderTotal" parameterType="com.baoxin.pojo.OrderLine">
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>

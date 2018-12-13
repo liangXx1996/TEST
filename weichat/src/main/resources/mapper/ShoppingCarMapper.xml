@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.baosight.dao.ShoppingCarMapper" >
-  <resultMap id="BaseResultMap" type="com.baosight.pojo.ShoppingCar" >
+<mapper namespace="com.baoxin.dao.ShoppingCarMapper" >
+  <resultMap id="BaseResultMap" type="com.baoxin.pojo.ShoppingCar" >
     <constructor >
       <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="userId" jdbcType="INTEGER" javaType="java.lang.Integer" />
@@ -26,7 +26,7 @@
     delete from shoppingcart
     where num = 0
   </delete>
-  <insert id="insert" parameterType="com.baosight.pojo.ShoppingCar" >
+  <insert id="insert" parameterType="com.baoxin.pojo.ShoppingCar" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -37,7 +37,7 @@
       #{num,jdbcType=INTEGER}, now(), #{updateTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.baosight.pojo.ShoppingCar" >
+  <insert id="insertSelective" parameterType="com.baoxin.pojo.ShoppingCar" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -83,7 +83,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.baosight.pojo.ShoppingCar" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.baoxin.pojo.ShoppingCar" >
     update shoppingcart
     <set >
       <if test="foodId != null" >
@@ -104,7 +104,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.baosight.pojo.ShoppingCar" >
+  <update id="updateByPrimaryKey" parameterType="com.baoxin.pojo.ShoppingCar" >
     update shoppingcart
     set userId = #{userId,jdbcType=INTEGER},
       foodId = #{foodId,jdbcType=INTEGER},
@@ -115,7 +115,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <insert id="insertShoppCarNum" parameterType="com.baosight.pojo.ShoppingCar">
+  <insert id="insertShoppCarNum" parameterType="com.baoxin.pojo.ShoppingCar">
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>

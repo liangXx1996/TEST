@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.baosight.dao.OrderFormMapper" >
-    <resultMap id="BaseResultMap" type="com.baosight.VO.OrderFormVO" >
+<mapper namespace="com.baoxin.dao.OrderFormMapper" >
+    <resultMap id="BaseResultMap" type="com.baoxin.VO.OrderFormVO" >
         <result property="foodName" column="name"/>
         <result property="foodId" column="foodId"/>
         <result property="ShopCarFoodId" column="foodId"/>

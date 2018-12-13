@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.baosight.dao.CustomerMapper" >
-  <resultMap id="BaseResultMap" type="com.baosight.pojo.Customer" >
+<mapper namespace="com.baoxin.dao.CustomerMapper" >
+  <resultMap id="BaseResultMap" type="com.baoxin.pojo.Customer" >
     <constructor >
       <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
@@ -26,7 +26,7 @@
     delete from customer
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.baosight.pojo.Customer" >
+  <insert id="insert" parameterType="com.baoxin.pojo.Customer" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -37,7 +37,7 @@
       #{phone,jdbcType=VARCHAR}, #{money,jdbcType=DECIMAL}, now(),
     #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.baosight.pojo.Customer" >
+  <insert id="insertSelective" parameterType="com.baoxin.pojo.Customer" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -89,7 +89,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.baosight.pojo.Customer" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.baoxin.pojo.Customer" >
     update customer
     <set >
       <if test="name != null" >
@@ -116,7 +116,7 @@
     </set>
     where name = #{name,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.baosight.pojo.Customer">
+  <update id="updateByPrimaryKey" parameterType="com.baoxin.pojo.Customer">
     update customer
     set name = #{name,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
