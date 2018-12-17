@@ -13,9 +13,11 @@ package com.baoxin.service.serviceImpl;
 import com.baoxin.VO.OrderFormVO;
 import com.baoxin.VO.OrderTzVO;
 import com.baoxin.common.Conts;
+import com.baoxin.dao.FoodMapper;
 import com.baoxin.dao.OrderFormMapper;
 import com.baoxin.dao.OrderLineMapper;
 import com.baoxin.dao.OrderTzVOMapper;
+import com.baoxin.pojo.Food;
 import com.baoxin.pojo.OrderLine;
 import com.baoxin.service.OrderLineService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +46,8 @@ public class OrderLineServiceImpl implements OrderLineService {
 
     @Autowired
     OrderTzVOMapper orderTzVOMapper;
+    @Autowired
+    FoodMapper foodMapper;
 
     @Override
     public OrderLine save(OrderLine orderLine) {
@@ -127,9 +131,12 @@ public class OrderLineServiceImpl implements OrderLineService {
 //    }
 
     @Override
-    public OrderTzVO insertOrderTotal(OrderTzVO orderTzVO) {
-        orderTzVOMapper.insertOrderTotal(orderTzVO.getOrderTotal());
-        return  orderTzVO;
+    public int insertOrderTotal(int orderTotal,int foodId) {
+      /*  int i = foodMapper.checkFoodStatus(orderTzVO.getFoodId());
+
+        for(int a;a<)*/
+        int i = orderTzVOMapper.insertOrderTotal(orderTotal, foodId);
+        return i;
     }
 }
 

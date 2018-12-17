@@ -9,7 +9,7 @@
     </resultMap>
 
     <select id="OrderTongZhi" resultMap="BaseResultMap">
-        select f.name,s.num,o.total
+        select f.name,s.num,o.total,o.foodId
         from food f,orderline o,shoppingcart s
         where f.id = o.foodId and s.foodId = f.id
     </select>
@@ -18,24 +18,24 @@
         delete from orderline where foodId=(select id from food where name=#{name})
     </delete>
 
-    <insert id="insertFoodName" parameterType="com.baoxin.VO.OrderTzVO">
+    <insert id="insertFoodName" parameterType="com.baoxin.pojo.Food">
         <!--<selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >-->
         <!--SELECT LAST_INSERT_ID()-->
         <!--</selectKey>-->
         insert into food(name) values (#{name,jdbcType=VARCHAR})
     </insert>
 
-    <insert id="insertShoppCarNum" parameterType="com.baoxin.VO.OrderTzVO">
+    <insert id="insertShoppCarNum" parameterType="com.baoxin.pojo.ShoppingCar">
         <!--<selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >-->
             <!--SELECT LAST_INSERT_ID()-->
         <!--</selectKey>-->
-        insert into shoppingcart(foodId,num) values(#{foodId,jdbcType=INTEGER},#{shoppCartNum,jdbcType=INTEGER})
+        insert into shoppingcart(foodId,num) values(#{foodId},#{shoppCartNum})
     </insert>
 
-    <insert id="insertOrderTotal" parameterType="com.baoxin.VO.OrderTzVO">
+    <insert id="insertOrderTotal" parameterType="com.baoxin.pojo.OrderLine">
         <!--<selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >-->
             <!--SELECT LAST_INSERT_ID()-->
         <!--</selectKey>-->
-        insert into orderline(foodId,total) values (#{foodId,jdbcType=INTEGER},#{orderTotal,jdbcType=DECIMAL})
+        insert into orderline(foodId,total) values (#{foodId},#{orderTotal})
     </insert>
 </mapper>

@@ -1,6 +1,7 @@
 package com.baoxin.dao;
 
 import com.baoxin.VO.OrderTzVO;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
@@ -15,7 +16,7 @@ public interface OrderTzVOMapper {
 
     int insertFoodName(OrderTzVO orderTzVO);
 
-    int insertShoppCarNum(int shoppCartNum);
+    int insertShoppCarNum(@Param("shoppCartNum") int shoppCartNum,@Param("foodId") int foodId);
 
-    int insertOrderTotal(int orderTotal);
+    int insertOrderTotal(@Param("orderTotal") int orderTotal,@Param("foodId")int foodId);
 }

@@ -137,7 +137,7 @@
     </select>
 
   <select id="checkFoodStatus" resultType="java.lang.Integer">
-    select stock
+    select price
     from food
     where id=#{id}
   </select>
@@ -148,4 +148,6 @@
     </selectKey>
     insert into food(name) values (#{name,jdbcType=VARCHAR})
   </insert>
+
+
 </mapper>

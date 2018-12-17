@@ -4,7 +4,6 @@
     <resultMap id="BaseResultMap" type="com.baoxin.VO.OrderFormVO" >
         <result property="foodName" column="name"/>
         <result property="foodId" column="foodId"/>
-        <result property="ShopCarFoodId" column="foodId"/>
         <result property="foodNum" column="num"/>
         <result property="foodPrice" column="price"/>
         <result property="foodStatues" column="stock"/>
@@ -18,7 +17,7 @@
     </select>
 
     <select id="AllOrder" resultMap="BaseResultMap">
-        SELECT o.foodId,f.name,f.picture,f.price,f.stock,o.num,o.total,s.foodId
+        SELECT o.foodId,f.name,o.num,o.total,s.foodId
         FROM food f,orderline o,shoppingcart s
         where f.id = o.foodId and s.foodId = f.id
     </select>

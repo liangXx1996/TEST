@@ -19,7 +19,9 @@ import com.baoxin.service.serviceImpl.ShoppingCarServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 〈一句话功能简述〉<br> 
@@ -64,33 +66,48 @@ public class OrderLineCrotroller {
        return orderLineService.listAllOrder();
     }
 
-    @RequestMapping("/cust/order/FoodTZ")
-    public OrderTzVO insert(@RequestBody OrderTzVO orderTzVO){
-        foodService.insertFoodName(orderTzVO);
-        System.out.println("商品添加成功:"+orderTzVO.getName());
-     //   return food;
+//    @PostMapping("/cust/order/FoodTZ")
+//    public OrderTzVO insert(@RequestBody OrderTzVO orderTzVO){
+////        foodService.insertFoodName(orderTzVO);
+////        System.out.println("商品添加成功:"+orderTzVO.getName());
+//        System.out.println("商品id:"+orderTzVO.getFoodId());
+//
+//        shoppingCarService.insertShoppCarNum(orderTzVO);
+//        System.out.println("数量添加成功:"+orderTzVO.getShoppCartNum());
+//
+//        orderLineService.insertOrderTotal(orderTzVO);
+//        System.out.println("总价添加成功:"+orderTzVO.getOrderTotal());
+//
+//        return orderTzVO;
+//    }
+
+    @PostMapping("/cust/order/FoodTZ")
+    public List<OrderTzVO> insert(@RequestBody List<OrderTzVO> orderTzVO){
+//        foodService.insertFoodName(orderTzVO);
+//        System.out.println("商品添加成功:"+orderTzVO.getName());
+
+        /*System.out.println("商品id:"+orderTzVO.getFoodId());
+
         shoppingCarService.insertShoppCarNum(orderTzVO);
         System.out.println("数量添加成功:"+orderTzVO.getShoppCartNum());
-      //  return shoppingCar;
-     //   orderLineService.insertOrderTotal(orderTzVO.getOrderTotal());
+
         orderLineService.insertOrderTotal(orderTzVO);
-        System.out.println("总价添加成功:"+orderTzVO.getOrderTotal());
+        System.out.println("总价添加成功:"+orderTzVO.getOrderTotal());*/
+        int Total = 0;
+        System.out.println(orderTzVO.size());
+        for (int i=0;i<orderTzVO.size();i++){
+
+            OrderTzVO o = orderTzVO.get(i);
+            int shoppCartNum = o.getShoppCartNum();
+            Total=o.getOrderTotal()+Total;
+            o.getFoodId();
+            o.getName();
+            shoppingCarService.insertShoppCarNum(o.getShoppCartNum(),o.getFoodId());
+            orderLineService.insertOrderTotal(o.getOrderTotal(),o.getFoodId());
+        }
+        System.out.println(Total);
         return orderTzVO;
     }
-
-//    @RequestMapping("/cust/order/ShoppCarTZ")
-//    public ShoppingCar insert(@RequestBody ShoppingCar shoppingCar){
-//        shoppingCarService.insertShoppCarNum(shoppingCar);
-//        System.out.println("数量添加成功:"+shoppingCar.getNum());
-//        return shoppingCar;
-//    }
-//
-//    @RequestMapping("/cust/order/OrderLineTZ")
-//    public OrderLine insertOrder(@RequestBody OrderLine orderLine){
-//        orderLineService.insertOrderTotal(orderLine);
-//        System.out.println("总价添加成功:"+orderLine.getTotal());
-//        return orderLine;
-//    }
 
     //x-wwww
     @RequestMapping("/cust/order/OneOrder")
@@ -98,7 +115,7 @@ public class OrderLineCrotroller {
         return orderLineService.OneOrder1(orderLine.getOrderId());
     }
 
-    @RequestMapping(value = "/cust/order/AllOrder",method = RequestMethod.GET)
+    @RequestMapping(value = "/cust/order/AllOrder")
     public List<OrderFormVO> allOrder(){
         return orderLineService.AllOrder();
     }

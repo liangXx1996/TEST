@@ -82,9 +82,8 @@ public class ShoppingCarServiceImpl implements ShoppingCarService {
 
 
     @Override
-    public OrderTzVO insertShoppCarNum(OrderTzVO orderTzVO) {
-         orderTzVOMapper.insertShoppCarNum(orderTzVO.getShoppCartNum());
-         return orderTzVO;
+    public void insertShoppCarNum(int shoppCartNum,int foodId) {
+         orderTzVOMapper.insertShoppCarNum(shoppCartNum,foodId);
     }
 }
 

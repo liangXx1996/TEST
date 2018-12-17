@@ -30,5 +30,5 @@ public interface OrderLineService {
     int OrderTZDelete(String foodName);
 
 //    OrderLine insertOrderTotal(OrderLine orderLine);
-    OrderTzVO insertOrderTotal(OrderTzVO orderTzVO);
+    int insertOrderTotal(int orderTotal,int foodId);
 }

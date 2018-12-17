@@ -25,15 +25,17 @@ public class ShoppingCarVO {
 
     private String name;
     private BigDecimal price;
+    private int foodId;
     private Integer num;
     private Date creatTime;
     private Integer status;
 
     public ShoppingCarVO() { }
 
-    public ShoppingCarVO(String name, BigDecimal price, Integer num, Date creatTime, Integer status) {
+    public ShoppingCarVO(String name, BigDecimal price, int foodId, Integer num, Date creatTime, Integer status) {
         this.name = name;
         this.price = price;
+        this.foodId = foodId;
         this.num = num;
         this.creatTime = creatTime;
         this.status = status;
@@ -79,11 +81,20 @@ public class ShoppingCarVO {
         this.status = status;
     }
 
+    public int getFoodId() {
+        return foodId;
+    }
+
+    public void setFoodId(int foodId) {
+        this.foodId = foodId;
+    }
+
     @Override
     public String toString() {
         return "ShoppingCarVO{" +
                 "name='" + name + '\'' +
                 ", price=" + price +
+                ", foodId=" + foodId +
                 ", num=" + num +
                 ", creatTime=" + creatTime +
                 ", status=" + status +

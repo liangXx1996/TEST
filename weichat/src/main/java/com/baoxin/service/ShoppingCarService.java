@@ -16,6 +16,6 @@ public interface ShoppingCarService {
 
     List<ShoppingCarVO> shopCarSelete();
 
-    OrderTzVO insertShoppCarNum(OrderTzVO orderTzVO);
+    void insertShoppCarNum(int shoppCartNum,int foodId);
 }
 
