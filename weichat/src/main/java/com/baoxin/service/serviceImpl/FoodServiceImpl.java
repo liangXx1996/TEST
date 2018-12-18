@@ -46,7 +46,7 @@ public class FoodServiceImpl implements FoodService {
             return null;
         }
         food.setStock(Conts.FOOD_PUSH);
-        food.setPicture(this.getClass().getClassLoader().getResource("img/")+food.getPicture().replace("file:/","").trim());
+        food.setPicture(this.getClass().getClassLoader().getResource("static/img/")+food.getPicture().replace("file:/","").trim());
         System.out.println();
         foodMapper.insertSelective(food);
         return food;

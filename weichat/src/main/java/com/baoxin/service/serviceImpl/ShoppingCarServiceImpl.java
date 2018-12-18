@@ -22,6 +22,7 @@ import com.baoxin.service.ShoppingCarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -82,8 +83,25 @@ public class ShoppingCarServiceImpl implements ShoppingCarService {
 
 
     @Override
-    public void insertShoppCarNum(int shoppCartNum,int foodId) {
-         orderTzVOMapper.insertShoppCarNum(shoppCartNum,foodId);
+    public void insertShoppCarNum(int shoppCartNum,int foodId,int status) {
+         orderTzVOMapper.insertShoppCarNum(shoppCartNum,foodId,status);
+    }
+
+    @Override
+    public int insertFood(int foodId, int num, int status, Date creatTime) {
+        ShoppingCar shoppingCar = new ShoppingCar();
+        shoppingCar.setStatus(Conts.SHOPPINGCAR_CHECKED);
+        return shoppingCarMapper.insertFood(foodId,num,status,creatTime);
+    }
+
+    @Override
+    public int deleteAll(int status) {
+        return shoppingCarMapper.deleteAll(status);
+    }
+
+    @Override
+    public int updateShopCarStatus() {
+        return shoppingCarMapper.updateShopCarStatus();
     }
 }
 

@@ -16,7 +16,7 @@ public interface OrderTzVOMapper {
 
     int insertFoodName(OrderTzVO orderTzVO);
 
-    int insertShoppCarNum(@Param("shoppCartNum") int shoppCartNum,@Param("foodId") int foodId);
+    int insertShoppCarNum(@Param("shoppCartNum") int shoppCartNum,@Param("foodId") int foodId,@Param("status") int status);
 
-    int insertOrderTotal(@Param("orderTotal") int orderTotal,@Param("foodId")int foodId);
+    int insertOrderTotal(@Param("orderTotal") int orderTotal,@Param("foodId")int foodId,@Param("status")int status);
 }

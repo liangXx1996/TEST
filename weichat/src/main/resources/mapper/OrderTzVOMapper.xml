@@ -6,10 +6,12 @@
         <result property="orderTotal" column="total"/>
         <result property="shoppCartNum" column="num"/>
         <result property="foodId" column="foodId"/>
+        <result property="time" column="creatTime"/>
+        <result property="status" column="status"/>
     </resultMap>
 
     <select id="OrderTongZhi" resultMap="BaseResultMap">
-        select f.name,s.num,o.total,o.foodId
+        select f.name,s.num,o.total,o.foodId,o.creatTime
         from food f,orderline o,shoppingcart s
         where f.id = o.foodId and s.foodId = f.id
     </select>
@@ -29,13 +31,13 @@
         <!--<selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >-->
             <!--SELECT LAST_INSERT_ID()-->
         <!--</selectKey>-->
-        insert into shoppingcart(foodId,num) values(#{foodId},#{shoppCartNum})
+        insert into shoppingcart(foodId,num,creatTime,status) values(#{foodId},#{shoppCartNum},now(),#{status})
     </insert>
 
     <insert id="insertOrderTotal" parameterType="com.baoxin.pojo.OrderLine">
         <!--<selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >-->
             <!--SELECT LAST_INSERT_ID()-->
         <!--</selectKey>-->
-        insert into orderline(foodId,total) values (#{foodId},#{orderTotal})
+        insert into orderline(foodId,total,creatTime) values (#{foodId},#{orderTotal},now())
     </insert>
 </mapper>

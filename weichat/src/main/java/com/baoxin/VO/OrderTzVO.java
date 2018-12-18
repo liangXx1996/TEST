@@ -12,6 +12,8 @@ package com.baoxin.VO;
 
 //import java.math.int;
 
+import java.util.Date;
+
 /**
  * 〈一句话功能简述〉<br> 
  * 〈〉
@@ -26,15 +28,19 @@ public class OrderTzVO {
     private int orderTotal;
     private int shoppCartNum;
     private int foodId;
+    private Date time;
+    private int status;
 
     public OrderTzVO() {
     }
 
-    public OrderTzVO(String name, int orderTotal, int shoppCartNum, int foodId) {
+    public OrderTzVO(String name, int orderTotal, int shoppCartNum, int foodId, Date time, int status) {
         this.name = name;
         this.orderTotal = orderTotal;
         this.shoppCartNum = shoppCartNum;
         this.foodId = foodId;
+        this.time = time;
+        this.status = status;
     }
 
     public String getName() {
@@ -69,6 +75,22 @@ public class OrderTzVO {
         this.foodId = foodId;
     }
 
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "OrderTzVO{" +
@@ -76,6 +98,8 @@ public class OrderTzVO {
                 ", orderTotal=" + orderTotal +
                 ", shoppCartNum=" + shoppCartNum +
                 ", foodId=" + foodId +
+                ", time=" + time +
+                ", status=" + status +
                 '}';
     }
 }

@@ -59,7 +59,7 @@ public class FoodCrotroller {
     /*
     查找所有
     */
-    @RequestMapping("/cust/food/listFood")
+    @GetMapping("/cust/food/listFood")
     public List<Food> ListCustomer(){
         return foodService.ListFood();
     }

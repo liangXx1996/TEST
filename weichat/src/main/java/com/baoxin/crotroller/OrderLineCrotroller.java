@@ -19,6 +19,7 @@ import com.baoxin.service.serviceImpl.ShoppingCarServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.MultipartConfigElement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -102,8 +103,9 @@ public class OrderLineCrotroller {
             Total=o.getOrderTotal()+Total;
             o.getFoodId();
             o.getName();
-            shoppingCarService.insertShoppCarNum(o.getShoppCartNum(),o.getFoodId());
-            orderLineService.insertOrderTotal(o.getOrderTotal(),o.getFoodId());
+            o.getStatus();
+            shoppingCarService.insertShoppCarNum(o.getShoppCartNum(),o.getFoodId(),o.getStatus());
+            orderLineService.insertOrderTotal(o.getOrderTotal(),o.getFoodId(),o.getStatus());
         }
         System.out.println(Total);
         return orderTzVO;

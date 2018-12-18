@@ -131,11 +131,11 @@ public class OrderLineServiceImpl implements OrderLineService {
 //    }
 
     @Override
-    public int insertOrderTotal(int orderTotal,int foodId) {
+    public int insertOrderTotal(int orderTotal,int foodId,int status) {
       /*  int i = foodMapper.checkFoodStatus(orderTzVO.getFoodId());
 
         for(int a;a<)*/
-        int i = orderTzVOMapper.insertOrderTotal(orderTotal, foodId);
+        int i = orderTzVOMapper.insertOrderTotal(orderTotal, foodId,status);
         return i;
     }
 }

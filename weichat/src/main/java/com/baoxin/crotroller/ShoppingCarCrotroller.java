@@ -14,9 +14,7 @@ import com.baoxin.VO.ShoppingCarVO;
 import com.baoxin.pojo.ShoppingCar;
 import com.baoxin.service.serviceImpl.ShoppingCarServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -36,8 +34,15 @@ public class ShoppingCarCrotroller {
 
     //raw
     @RequestMapping("/cust/shopCar/Insert")
-    public ShoppingCar insert(@RequestBody ShoppingCar shoppingCar){
-        shoppingCarService.save(shoppingCar);
+    public List<ShoppingCar> insert(@RequestBody List<ShoppingCar> shoppingCar){
+        for(int i=0;i<shoppingCar.size();i++){
+            ShoppingCar car = shoppingCar.get(i);
+            car.getFoodid();
+            car.getNum();
+            shoppingCarService.insertFood(car.getFoodid(),car.getNum(),car.getStatus(),car.getCreattime());
+            System.out.println("foodId:"+car.getFoodid());
+            System.out.println("num:"+car.getNum());
+        }
         return shoppingCar;
     }
 
@@ -52,7 +57,7 @@ public class ShoppingCarCrotroller {
 
     }
 
-    @RequestMapping("/cust/shopCar/Selete")
+    @RequestMapping(value = "/cust/shopCar/Selete",method = RequestMethod.GET)
     public List<ShoppingCarVO> select(){
         return shoppingCarService.shopCarSelete();
     }
@@ -62,5 +67,18 @@ public class ShoppingCarCrotroller {
         return shoppingCarService.update(shoppingCar);
     }
 
+    @PostMapping("/cust/shopCar/deleteAll")
+    public int deleteAll(@RequestBody ShoppingCar shoppingCar){
+        int i = shoppingCarService.deleteAll(shoppingCar.getStatus());
+        System.out.println("删除了:"+i+"条数据");
+        return i;
+    }
+
+    @RequestMapping("/cust/shopCar/updataStatus")
+    public int updataStatus(){
+        int i = shoppingCarService.updateShopCarStatus();
+        System.out.println("状态以修改:"+i+"条数据");
+        return i;
+    }
 }
 

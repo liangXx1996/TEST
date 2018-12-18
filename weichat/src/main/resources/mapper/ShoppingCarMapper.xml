@@ -37,6 +37,12 @@
       #{num,jdbcType=INTEGER}, now(), #{updateTime,jdbcType=TIMESTAMP}
       )
   </insert>
+  <insert id="insertFood" parameterType="com.baoxin.pojo.ShoppingCar">
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into shoppingcart(foodId,num,creatTime,status) values(#{foodId,jdbcType=INTEGER},#{num,jdbcType=INTEGER},now(),#{status,jdbcType=INTEGER})
+  </insert>
   <insert id="insertSelective" parameterType="com.baoxin.pojo.ShoppingCar" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
@@ -122,4 +128,12 @@
     insert into shoppingcart(num) values(#{num,jdbcType=INTEGER})
   </insert>
 
+  <delete id="deleteAll" parameterType="java.lang.Integer" >
+      delete from shoppingcart where status = (1)
+  </delete>
+
+  <update id="updateShopCarStatus" parameterType="com.baoxin.pojo.ShoppingCar">
+    update shoppingcart
+    set status = (1)
+  </update>
 </mapper>
